@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-rows p-16px gap-sm justify-between">
+  <div class="flex flex-rows p-16px gap-sm justify-between bg-white">
     <div class="flex flex-rows">
       <div class="flex flex-rows gap-sm items-center">
         <p class="text-sm">Family:</p>

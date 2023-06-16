@@ -1,6 +1,6 @@
 <template>
   <select
-    class="bg-[#0000000f] px-2 py-1 rounded-xl text-sm"
+    class="bg-[#ffffff0f] px-2 py-1 rounded-xl text-sm"
     :value="value"
     @change="select"
   >

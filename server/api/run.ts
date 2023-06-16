@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const chatCompletion = await openai.createCompletion({
     model: body.model,
     prompt: body.content,
-    max_tokens: 5,
+    max_tokens: 1000,
     temperature: 0,
   });
   return chatCompletion.data.choices[0].text;
