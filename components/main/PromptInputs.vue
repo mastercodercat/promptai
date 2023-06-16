@@ -29,8 +29,8 @@ export default {
       default: () => [],
     },
     promptValues: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {},
     },
     onPromptValueChanged: {
       type: Function,

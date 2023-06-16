@@ -27,9 +27,9 @@
         >
           {{ item.content }}
         </span>
-        <span class="float-left rounded-prompt px-3 border border-white"
-          >Completion</span
-        >
+        <span class="float-left rounded-prompt px-3 border border-white">
+          Completion
+        </span>
       </div>
     </div>
     <div class="text-white">Tokens: {{ promptContent.split(" ").length }}</div>

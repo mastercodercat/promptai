@@ -16,8 +16,8 @@ export default {
   name: "CommonSelect",
   props: {
     value: {
-      type: String,
-      default: () => "",
+      type: Number,
+      default: () => 0,
     },
     title: {
       type: String,
