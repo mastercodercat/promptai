@@ -1,6 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
 export default defineEventHandler(async (event) => {
+  console.log(process.env.OPENAI_API_KEY);
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   });
