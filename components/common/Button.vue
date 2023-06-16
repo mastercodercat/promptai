@@ -6,7 +6,6 @@
         ? 'bg-btn-color text-btn-text'
         : 'border-btn-color border text-btn-color')
     "
-    v-on="$listeners"
   >
     <slot></slot>
   </button>

@@ -1,4 +1,3 @@
-
 <template>
   <div class="min-h-screen font-sans antialiased relative">
     <div class="relative max-w-1000 mx-auto p-[32px] flex flex-col gap-el">
@@ -13,13 +12,13 @@
   </div>
 </template>
 
-  <script>
+<script>
 export default {
   name: "DefaultLayout",
 };
 </script>
 
-  <style>
+<style>
 .cover-gradient {
   background: linear-gradient(
     169.4deg,
@@ -45,6 +44,7 @@ export default {
 .text-gradient {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .slide-enter-active {

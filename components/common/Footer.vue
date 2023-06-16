@@ -5,3 +5,9 @@
     <div class="pl-2">©&nbsp;2023&nbsp;prmpts.<strong>AI</strong></div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "CommonFooter",
+};
+</script>

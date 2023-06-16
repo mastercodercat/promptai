@@ -1,16 +1,16 @@
 <template>
   <div class="border border-grey-border w-full rounded-prompt overflow-hidden">
     <MainPromptEditor
-      :promptContent="promptContent"
-      :contentChanged="contentChanged"
+      :prompt-content="promptContent"
+      :content-changed="contentChanged"
     />
     <div class="flex flex-row bg-grey-bright">
       <MainPromptInputs
-        :promptInputs="promptInputs"
-        :promptValues="promptValues"
-        :onPromptValueChanged="onValueChanged"
+        :prompt-inputs="promptInputs"
+        :prompt-values="promptValues"
+        :on-prompt-value-changed="onValueChanged"
       />
-      <MainPromptPreview :promptInputs="promptPreview" />
+      <MainPromptPreview :prompt-inputs="promptPreview" />
     </div>
     <MainPromptActionBar />
   </div>
@@ -42,7 +42,7 @@ export default {
     },
     promptPreview() {
       return splitTokenFromContent(this.promptContent).map((item) => {
-        if (item.type == 2) {
+        if (item.type === 2) {
           item.value = this.promptValues[item.content];
         }
         return item;

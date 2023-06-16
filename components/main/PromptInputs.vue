@@ -2,7 +2,8 @@
   <div class="p-24px flex flex-1 flex-col gap-sm">
     <div class="text-xs text-grey-text">Inputs</div>
     <div
-      v-for="item of promptInputs"
+      v-for="(item, key) of promptInputs"
+      :key="key"
       class="flex flex-col gap-sm items-baseline"
     >
       <div
@@ -23,13 +24,21 @@
 <script>
 export default {
   props: {
-    promptInputs: Array,
-    promptValues: Array,
-    onPromptValueChanged: Function,
+    promptInputs: {
+      type: Array,
+      default: () => [],
+    },
+    promptValues: {
+      type: Array,
+      default: () => [],
+    },
+    onPromptValueChanged: {
+      type: Function,
+      default: () => {},
+    },
   },
   methods: {
     onEdit(ev, key) {
-      console.log(ev.target.value, key);
       this.onPromptValueChanged(key, ev.target.value);
     },
   },

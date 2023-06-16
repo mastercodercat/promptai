@@ -5,22 +5,23 @@
       class="rounded-[8px] bg-editor text-white p-24px leading-editor whitespace-pre-wrap"
     >
       <div
-        :contentEditable="isEditing"
-        aria-multiline="true"
-        @keyup="onEditorChanged"
+        v-if="isEditing"
         id="editor"
-        @focusout="onEditEnd"
+        aria-multiline="true"
         role="textbox"
         spellcheck="false"
         class="bg-transparent text-white w-full"
+        :contentEditable="isEditing"
         :on-change="onEditorChanged"
-        v-if="isEditing"
+        @keyup="onEditorChanged"
+        @focusout="onEditEnd"
       >
         {{ editorContent }}
       </div>
-      <div class="whitespace-pre-wrap" @click="onEdit" v-else>
+      <div v-else class="whitespace-pre-wrap" @click="onEdit">
         <span
-          v-for="item of htmlContents"
+          v-for="(item, key) of htmlContents"
+          :key="key"
           :class="item.type == 2 ? 'rounded-prompt px-3' : ''"
           :style="item.type == 2 ? 'background-color: ' + item.color : ''"
         >
@@ -39,6 +40,22 @@
 import { splitTokenFromContent } from "~/utils/utils";
 
 export default {
+  props: {
+    promptContent: {
+      type: String,
+      default: () => "",
+    },
+    contentChanged: {
+      type: Function,
+      default: () => {},
+    },
+  },
+  setup() {
+    const editor = ref(null);
+    return {
+      editor,
+    };
+  },
   data() {
     return {
       isEditing: false,
@@ -50,34 +67,24 @@ export default {
       return splitTokenFromContent(this.promptContent);
     },
   },
-  props: {
-    promptContent: String,
-    contentChanged: Function,
-  },
-  methods: {
-    onEditorChanged(ev) {
-      this.contentChanged(ev.target.innerText);
-    },
-    onEdit(ev) {
-      this.isEditing = true;
-      this.editorContent = this.promptContent;
-      return true;
-    },
-    onEditEnd(ev) {
-      this.isEditing = false;
-      return true;
-    },
-  },
   updated() {
     if (document.getElementById("editor")) {
       document.getElementById("editor").focus();
     }
   },
-  setup() {
-    const editor = ref(null);
-    return {
-      editor,
-    };
+  methods: {
+    onEditorChanged(ev) {
+      this.contentChanged(ev.target.innerText);
+    },
+    onEdit() {
+      this.isEditing = true;
+      this.editorContent = this.promptContent;
+      return true;
+    },
+    onEditEnd() {
+      this.isEditing = false;
+      return true;
+    },
   },
 };
 </script>
