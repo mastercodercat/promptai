@@ -18,9 +18,11 @@
       <MainPromptActionBar
         :prompt-input="promptInput"
         :on-new-result="onNewResult"
+        :running="running"
+        :on-running="onStartRunning"
       />
     </div>
-    <MainPromptResults :results="results" />
+    <MainPromptResults :results="results" :running="running" />
   </div>
 </template>
 
@@ -43,6 +45,7 @@ export default {
       promptContent: initialContent,
       promptValues: initialValue,
       results: [],
+      running: false,
     };
   },
   computed: {
@@ -79,7 +82,11 @@ export default {
     onValueChanged(key, value) {
       this.promptValues[key] = value;
     },
+    onStartRunning() {
+      this.running = true;
+    },
     onNewResult(result) {
+      this.running = false;
       this.results = [result, ...this.results];
     },
   },

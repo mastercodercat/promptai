@@ -1,5 +1,14 @@
 <template>
   <div>
+    <div v-if="running" class="flex justify-center">
+      <client-only>
+        <Vue3Lottie
+          animation-link="https://assets6.lottiefiles.com/packages/lf20_fxiiHu.json"
+          :height="100"
+          :width="200"
+        />
+      </client-only>
+    </div>
     <div
       v-for="(item, key) of results"
       :key="key"
@@ -28,6 +37,10 @@ export default {
     results: {
       type: Array,
       default: () => [],
+    },
+    running: {
+      type: Boolean,
+      default: () => false,
     },
   },
 };

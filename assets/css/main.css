@@ -17,8 +17,9 @@
   --color-secondary: #fdf9f3;
   --bg: #131313;
   --bg-secondary: #131313;
-  --border-color: #0d2538;
+  --border-color: #ffffff;
 }
+
 .sepia-mode {
   --color: #433422;
   --color-secondary: #504231;
@@ -36,4 +37,8 @@ body {
 }
 a {
   color: var(--color-primary);
+}
+
+hr {
+  border-color: var(--border-color);
 }

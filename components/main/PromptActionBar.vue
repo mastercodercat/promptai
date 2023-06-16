@@ -31,7 +31,7 @@
           >Enter</span
         >
       </div>
-      <CommonButton :click="onRun">RUN</CommonButton>
+      <CommonButton :click="onRun" :loading="running">RUN</CommonButton>
       <CommonButton :outline="true">Save</CommonButton>
     </div>
   </div>
@@ -42,6 +42,14 @@ export default {
     promptInput: {
       type: String,
       default: () => "",
+    },
+    running: {
+      type: Boolean,
+      default: () => false,
+    },
+    onRunning: {
+      type: Function,
+      default: () => {},
     },
     onNewResult: {
       type: Function,
@@ -84,6 +92,7 @@ export default {
       this.selectedModel = parseInt(ev.target.value);
     },
     async onRun() {
+      this.onRunning();
       const { data: result } = await useFetch("/api/run", {
         method: "POST",
         body: {

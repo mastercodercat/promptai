@@ -1,8 +1,19 @@
 <template>
-  <div class="min-h-screen font-sans antialiased relative">
-    <div class="relative max-w-1000 mx-auto p-[32px] flex flex-col gap-el">
+  <div class="min-h-screen font-sans antialiased relative flex items-center">
+    <div v-if="loading" class="flex justify-center items-center h-full w-full">
+      <client-only>
+        <Vue3Lottie
+          animation-link="https://assets6.lottiefiles.com/packages/lf20_5rImXbDsO1.json"
+          :height="200"
+          :width="200"
+        />
+      </client-only>
+    </div>
+    <div
+      v-else
+      class="relative max-w-1000 mx-auto p-[32px] flex flex-col gap-el"
+    >
       <CommonNavbar />
-
       <main class="text-neutral-800">
         <NuxtPage />
       </main>
@@ -13,8 +24,18 @@
 </template>
 
 <script>
+import "vue3-lottie/dist/style.css";
+
 export default {
   name: "DefaultLayout",
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => (this.loading = false), 3000);
+  },
 };
 </script>
 

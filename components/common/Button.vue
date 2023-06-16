@@ -4,11 +4,14 @@
       'uppercase text-center px-16px py-6px shadow-btn text-btn-size rounded-btn-radius ' +
       (!outline
         ? 'bg-btn-color text-btn-text'
-        : 'border-btn-color border text-btn-color')
+        : 'border-btn-color border text-btn-color') +
+      (loading ? 'bg-grey-text' : '')
     "
+    :disabled="loading"
     @click="click"
   >
-    <slot></slot>
+    <slot v-if="!loading"></slot>
+    <CommonLoading v-else />
   </button>
 </template>
 
@@ -23,6 +26,10 @@ export default {
     click: {
       type: Function,
       default: () => {},
+    },
+    loading: {
+      type: Boolean,
+      default: () => false,
     },
   },
 };
