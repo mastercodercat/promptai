@@ -6,6 +6,7 @@
         ? 'bg-btn-color text-btn-text'
         : 'border-btn-color border text-btn-color')
     "
+    @click="click"
   >
     <slot></slot>
   </button>
@@ -15,7 +16,14 @@
 export default {
   name: "CommonButton",
   props: {
-    outline: Boolean,
+    outline: {
+      type: Boolean,
+      default: () => false,
+    },
+    click: {
+      type: Function,
+      default: () => {},
+    },
   },
 };
 </script>
