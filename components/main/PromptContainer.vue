@@ -3,17 +3,54 @@
     <div
       class="border border-grey-border w-full rounded-prompt overflow-hidden"
     >
-      <MainPromptEditor
-        :prompt-content="promptContent"
-        :content-changed="contentChanged"
-      />
-      <div class="flex flex-row bg-grey-bright">
-        <MainPromptInputs
-          :prompt-inputs="promptInputs"
-          :prompt-values="promptValues"
-          :on-prompt-value-changed="onValueChanged"
-        />
-        <MainPromptPreview :prompt-inputs="promptPreview" />
+      <div class="flex flex-row relative">
+        <div class="flex flex-col w-1/2">
+          <MainPromptEditor
+            :prompt-content="promptContent"
+            :content-changed="contentChanged"
+          />
+          <div class="flex flex-col bg-grey-bright">
+            <div class="flex flex-row gap-sm ml-2">
+              <a
+                href="#"
+                :class="
+                  'text-xs p-16px' +
+                  (cur_tab === 1
+                    ? ' text-black border-b-[1px] border-black'
+                    : ' text-grey-text')
+                "
+                @click="switchTab(1)"
+              >
+                Inputs
+              </a>
+              <a
+                href="#"
+                :class="
+                  'text-xs p-16px' +
+                  (cur_tab === 2
+                    ? ' text-black border-b-[1px] border-black'
+                    : ' text-grey-text')
+                "
+                @click="switchTab(2)"
+              >
+                Preview
+              </a>
+            </div>
+            <div class="h-60 overflow-y-scroll">
+              <MainPromptInputs
+                v-if="cur_tab === 1"
+                :prompt-inputs="promptInputs"
+                :prompt-values="promptValues"
+                :on-prompt-value-changed="onValueChanged"
+              />
+              <MainPromptPreview
+                v-if="cur_tab === 2"
+                :prompt-inputs="promptPreview"
+              />
+            </div>
+          </div>
+        </div>
+        <MainPromptResults :results="results" :running="running" />
       </div>
       <MainPromptActionBar
         :prompt-input="promptInput"
@@ -22,7 +59,6 @@
         :on-running="onStartRunning"
       />
     </div>
-    <MainPromptResults :results="results" :running="running" />
   </div>
 </template>
 
@@ -46,6 +82,7 @@ export default {
       promptValues: initialValue,
       results: [],
       running: false,
+      cur_tab: 1,
     };
   },
   computed: {
@@ -88,6 +125,9 @@ export default {
     onNewResult(result) {
       this.running = false;
       this.results = [result, ...this.results];
+    },
+    switchTab(tabId) {
+      this.cur_tab = tabId;
     },
   },
 };

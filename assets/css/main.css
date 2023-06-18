@@ -42,3 +42,20 @@ a {
 hr {
   border-color: var(--border-color);
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #433422 #433422;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 2px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #433422;
+  border-radius: 14px;
+  border: 3px solid #433422;
+}

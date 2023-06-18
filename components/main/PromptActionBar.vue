@@ -87,6 +87,9 @@ export default {
   methods: {
     onGroupSelect(ev) {
       this.selectedGroup = parseInt(ev.target.value);
+      this.selectedModel = this.models.find(
+        (model) => model.groupId === this.selectedGroup
+      ).id;
     },
     onModelSelect(ev) {
       this.selectedModel = parseInt(ev.target.value);
@@ -96,7 +99,8 @@ export default {
       const { data: result } = await useFetch("/api/run", {
         method: "POST",
         body: {
-          model: this.models[this.selectedModel].name,
+          model: this.models.find((model) => model.id === this.selectedModel)
+            .name,
           content: this.promptInput,
         },
       });

@@ -11,7 +11,7 @@
     </div>
     <div
       v-else
-      class="relative max-w-1000 mx-auto p-[32px] flex flex-col gap-el"
+      class="relative max-w-1000 mx-auto p-[32px] flex flex-col gap-el w-full"
     >
       <CommonNavbar />
       <main class="text-neutral-800">

@@ -1,6 +1,6 @@
 <template>
   <div class="p-24px flex flex-1 flex-col gap-sm">
-    <div class="text-xs text-grey-text">Inputs</div>
+    <!-- <div class="text-xs text-grey-text">Inputs</div> -->
     <div
       v-for="(item, key) of promptInputs"
       :key="key"

@@ -7,7 +7,11 @@
     />
     <img v-else src="~/assets/images/logo.png" class="w-logo h-logo" />
     <div class="flex flex-rows gap-sm items-center">
-      <CommonToggle text="Night Mode" :on-toggle="onThemeToggle" />
+      <CommonToggle
+        text="Night Mode"
+        :on-toggle="onThemeToggle"
+        :checked="$colorMode.preference === 'dark'"
+      />
       <CommonButton>Login</CommonButton>
     </div>
   </nav>

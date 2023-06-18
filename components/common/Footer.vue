@@ -8,7 +8,7 @@
         class="w-8 h-8"
       />
       <img v-else src="~/assets/images/icon.png" class="w-8 h-8" />
-      <div class="pl-2">©&nbsp;2023&nbsp;prmpts.<strong>AI</strong></div>
+      <div class="pl-2">©&nbsp;2023&nbsp;PromptMonkey</div>
     </div>
   </div>
 </template>
