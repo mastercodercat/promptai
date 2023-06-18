@@ -7,6 +7,7 @@
         <div class="flex flex-col w-1/2">
           <MainPromptEditor
             :prompt-content="promptContent"
+            :tokens="tokens"
             :content-changed="contentChanged"
           />
           <div class="flex flex-col bg-grey-bright">
@@ -63,6 +64,7 @@
 </template>
 
 <script>
+import { encode } from "gpt-tokenizer";
 import { splitTokenFromContent } from "~/utils/utils";
 
 const initialContent = `Given the following fruit, output the closest color hex value that matches the color of that fruit.
@@ -110,6 +112,9 @@ export default {
         .reduce((pv, cv) => {
           return pv + (cv.value ? cv.value : cv.content);
         }, "");
+    },
+    tokens() {
+      return encode(this.promptInput);
     },
   },
   methods: {

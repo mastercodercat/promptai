@@ -32,7 +32,7 @@
         </span>
       </div>
     </div>
-    <div class="text-white">Tokens: {{ promptContent.split(" ").length }}</div>
+    <div class="text-white">Tokens: {{ tokens.length }}</div>
   </div>
 </template>
 
@@ -48,6 +48,10 @@ export default {
     contentChanged: {
       type: Function,
       default: () => {},
+    },
+    tokens: {
+      type: Array,
+      default: () => [],
     },
   },
   setup() {
